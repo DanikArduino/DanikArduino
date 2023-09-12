@@ -1,0 +1,33 @@
+const byte LED1 = 23;
+const byte LED2 = 25;
+const byte LED3 = 27;
+const byte LED4 = 29;
+const byte BUTTON = 11;
+bool state = 0;
+
+void setup() {
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+  pinMode(LED4, OUTPUT);
+  pinMode(BUTTON, INPUT);
+}
+
+void loop() {
+  if (digitalRead(BUTTON) == 1) {
+    state = !state;
+  }
+  if (state == 1) {
+    for ( ; ; ) {
+      if (state == 0) {
+        break;
+      }
+      for (int i = 23; i <= 29; i += 2) {
+        digitalWrite(i, HIGH);
+        delay(300);
+        digitalWrite(i, LOW);
+        delay(300);
+      }
+    }
+  }
+}
